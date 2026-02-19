@@ -100,7 +100,7 @@ Define research tasks and expected outputs
 
 ### Environment Variables (`.env`)
 ```
-ANTHROPIC_API_KEY=your_key_here
+SERPER_API_KEY=your_key_here
 OPENAI_API_KEY=your_key_here
 ```
 
