@@ -1,54 +1,137 @@
-# FinancialResearcher Crew
+# Financial Researcher
 
-Welcome to the FinancialResearcher Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+A CrewAI-powered financial research agent that analyzes companies, generates comprehensive research reports in Markdown, and automatically converts them into professional PowerPoint presentations.
+
+## Features
+
+- 🔍 **Intelligent Research**: Uses AI agents to gather and analyze financial data
+- 📊 **Comprehensive Reports**: Generates detailed markdown reports with key insights
+- 🎯 **Professional Presentations**: Automatically converts reports to beautifully formatted PowerPoint slides
+- 🤖 **Multi-Agent System**: Leverages CrewAI's crew framework for collaborative research
+
+## Project Structure
+
+```
+financial_researcher/
+├── src/
+│   └── financial_researcher/
+│       ├── __init__.py
+│       ├── main.py              # Main entry point & crew orchestration
+│       ├── crew.py              # Crew configuration & agent definitions
+│       ├── tasks.py             # Task definitions for agents
+│       ├── tools.py             # Custom tools & utilities
+│       ├── ppt_generator.py     # PowerPoint generation from markdown
+│       └── config/
+│           ├── agents.yaml      # Agent configurations
+│           └── tasks.yaml       # Task configurations
+├── output/
+│   ├── report.md               # Generated markdown report
+│   └── report.pptx             # Generated PowerPoint presentation
+├── .env                        # Environment variables (API keys)
+├── pyproject.toml              # Project dependencies & metadata
+├── README.md                   # This file
+└── .gitignore                  # Git ignore rules
+```
 
 ## Installation
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+### Prerequisites
+- Python 3.10+
+- pip or uv package manager
 
-First, if you haven't already, install uv:
+### Setup Steps
+
+1. **Navigate to project directory:**
+   ```bash
+   cd financial_researcher
+   ```
+
+2. **Create & activate virtual environment:**
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+   Or if using uv:
+   ```bash
+   uv pip install -r requirements.txt
+   ```
+
+4. **Set up environment variables:**
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your API keys (Anthropic, OpenAI, etc.)
+   ```
+
+## Usage
+
+### Run the Financial Researcher
 
 ```bash
-pip install uv
+crewai run
 ```
 
-Next, navigate to your project directory and install the dependencies:
-
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/financial_researcher/config/agents.yaml` to define your agents
-- Modify `src/financial_researcher/config/tasks.yaml` to define your tasks
-- Modify `src/financial_researcher/crew.py` to add your own logic, tools and specific args
-- Modify `src/financial_researcher/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+Or directly with Python:
 
 ```bash
-$ crewai run
+python src/financial_researcher/main.py
 ```
 
-This command initializes the financial_researcher Crew, assembling the agents and assigning them tasks as defined in your configuration.
+### Output
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+The crew will generate two files in the `output/` folder:
 
-## Understanding Your Crew
+- **report.md** - Detailed markdown research report
+- **report.pptx** - Professional PowerPoint presentation
 
-The financial_researcher Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+## Configuration
 
-## Support
+### Agents Configuration (`config/agents.yaml`)
+Define your research agents and their capabilities
 
-For support, questions, or feedback regarding the FinancialResearcher Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+### Tasks Configuration (`config/tasks.yaml`)
+Define research tasks and expected outputs
 
-Let's create wonders together with the power and simplicity of crewAI.
+### Environment Variables (`.env`)
+```
+ANTHROPIC_API_KEY=your_key_here
+OPENAI_API_KEY=your_key_here
+```
+
+## Technologies Used
+
+- **CrewAI** - Multi-agent orchestration framework
+- **python-pptx** - PowerPoint generation
+- **Anthropic Claude** - Language model
+- **Python 3.10+** - Programming language
+
+## Dependencies
+
+Key packages:
+- `crewai` - Agentic framework
+- `python-pptx` - PowerPoint creation
+- `python-dotenv` - Environment management
+- Additional dependencies in `pyproject.toml`
+
+## Contributing
+
+1. Create a feature branch
+2. Make your changes
+3. Test thoroughly
+4. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Notes
+
+- Ensure API keys are set in `.env` before running
+- First run may take longer as models initialize
+- Reports are saved in `output/` directory
+- PowerPoint styling is automatically applied
